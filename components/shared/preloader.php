@@ -1,24 +1,14 @@
 <!-- Preloader -->
 <div id="preloader" class="preloader">
-    <div class="preloader__background"></div>
     <div class="preloader__content">
         <div class="preloader__percentage" id="preloader-percentage">0%</div>
         <div class="preloader__text">
-            <span class="preloader__hello" id="preloader-hello">Hello</span>
-            <span class="preloader__we-are" id="preloader-we-are">
-                <span>We</span>
-                <span>&nbsp;</span>
-                <span>are</span>
-            </span>
-        </div>
-        <div class="preloader__tagline" id="preloader-tagline">
-            <div class="preloader__dot"></div>
-            <span>Lucrative Legal Group</span>
+            <span class="preloader__command" id="preloader-command">LAUNCHING YOUR ROI</span>
         </div>
     </div>
     <div class="preloader__slices" id="preloader-slices">
-        <div class="preloader__slice"></div>
-        <div class="preloader__slice"></div>
-        <div class="preloader__slice"></div>
+        <div class="preloader__slice preloader__slice--left"></div>
+        <div class="preloader__slice preloader__slice--right"></div>
     </div>
+    <img src="assets/images/spaceship.png" alt="Loading..." class="preloader__rocket" id="preloader-rocket">
 </div>

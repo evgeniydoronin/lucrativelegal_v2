@@ -7,17 +7,22 @@ class Preloader {
     constructor() {
         this.preloader = document.getElementById('preloader');
         this.percentage = document.getElementById('preloader-percentage');
-        this.hello = document.getElementById('preloader-hello');
-        this.weAre = document.getElementById('preloader-we-are');
-        this.tagline = document.getElementById('preloader-tagline');
+        this.command = document.getElementById('preloader-command');
         this.slices = document.getElementById('preloader-slices');
+        this.rocket = document.getElementById('preloader-rocket');
         
-        this.currentPercentage = 0;
-        this.targetPercentage = 0;
+        this.currentPercentage = 10;
+        this.targetPercentage = 10;
         this.isComplete = false;
         this.isLoading = false;
         this.pageLoaded = false;
         this.animationId = null;
+        
+        // Commands array
+        this.commands = [
+            'LAUNCHING YOUR ROI'
+        ];
+        this.currentCommand = '';
         
         this.init();
     }
@@ -32,6 +37,9 @@ class Preloader {
         
         // Показываем прелоадер
         this.show();
+        
+        // Устанавливаем начальное отображение
+        this.updatePercentageDisplay();
         
         // Запускаем симуляцию загрузки
         this.startLoading();
@@ -77,15 +85,11 @@ class Preloader {
         }
         
         this.isLoading = true;
-        console.log('🎬 Запуск анимации загрузки от 0 до 95%');
+        console.log('🎬 Запуск обратного отсчета от 10 до 1');
         
-        // Плавная анимация от 0 до 95% за 3 секунды
-        this.animateToPercentage(95, 3000);
+        // Плавная анимация от 10 до 1 за 3 секунды
+        this.animateToPercentage(1, 3000);
         
-        // Показываем текстовые элементы поэтапно
-        setTimeout(() => this.showHello(), 800);
-        setTimeout(() => this.showWeAre(), 1800);
-        setTimeout(() => this.showTagline(), 2500);
         
         // Через 3.2 секунды проверяем, загружена ли страница
         setTimeout(() => {
@@ -107,10 +111,10 @@ class Preloader {
     }
     
     completeLoading() {
-        console.log('🎯 Завершение загрузки до 100%');
+        console.log('🎯 Завершение обратного отсчета до 0');
         
-        // Завершаем загрузку до 100%
-        this.animateToPercentage(100, 500);
+        // Завершаем обратный отсчет до 0
+        this.animateToPercentage(0, 500);
         
         setTimeout(() => {
             this.startExitAnimation();
@@ -147,31 +151,38 @@ class Preloader {
     updatePercentageDisplay() {
         if (this.percentage) {
             const displayPercentage = Math.round(this.currentPercentage);
-            this.percentage.textContent = `${displayPercentage}%`;
-        }
-    }
-    
-    showHello() {
-        if (this.hello) {
-            this.hello.classList.add('visible');
+            this.percentage.textContent = `${displayPercentage}`;
             
+            // Update command based on counter ranges
+            this.updateCommand(displayPercentage);
+        }
+    }
+    
+    updateCommand(percentage) {
+        // Always show the single command throughout the countdown
+        const newCommand = this.commands[0];
+        
+        // Only update if command changed
+        if (newCommand !== this.currentCommand) {
+            this.currentCommand = newCommand;
+            this.showCommand(newCommand);
+        }
+    }
+    
+    showCommand(commandText) {
+        if (this.command && commandText) {
+            // Update text and show with fade effect (use innerHTML for <br> tags)
+            this.command.innerHTML = commandText;
+            this.command.classList.remove('visible');
+            
+            // Small delay to ensure smooth transition
             setTimeout(() => {
-                this.hello.classList.remove('visible');
-            }, 1000);
+                this.command.classList.add('visible');
+            }, 50);
         }
     }
     
-    showWeAre() {
-        if (this.weAre) {
-            this.weAre.classList.add('visible');
-        }
-    }
     
-    showTagline() {
-        if (this.tagline) {
-            this.tagline.classList.add('visible');
-        }
-    }
     
     startExitAnimation() {
         console.log('🎬 Запуск анимации выхода прелоадера');
@@ -183,26 +194,64 @@ class Preloader {
             console.log('✅ Fallback таймер отменен при начале анимации выхода');
         }
         
-        // Показываем слайсы
-        if (this.slices) {
-            this.slices.classList.add('visible');
-            
-            setTimeout(() => {
-                this.slices.classList.add('animate');
-            }, 100);
-        }
-        
         // Скрываем основной контент
         setTimeout(() => {
             if (this.percentage) this.percentage.style.opacity = '0';
-            if (this.weAre) this.weAre.style.opacity = '0';
-            if (this.tagline) this.tagline.style.opacity = '0';
+            if (this.command) this.command.style.opacity = '0';
         }, 500);
         
-        // Полностью скрываем прелоадер
+        // Запускаем анимацию взлета ракеты
         setTimeout(() => {
+            this.startRocketTakeoff();
+        }, 800);
+    }
+    
+    startRocketTakeoff() {
+        console.log('🚀 Запуск анимации взлета ракеты');
+        
+        if (this.rocket) {
+            // Добавляем класс для анимации взлета
+            this.rocket.classList.add('takeoff');
+            
+            // Слушаем окончание анимации
+            const handleAnimationEnd = () => {
+                console.log('🚀 Ракета улетела, запускаем анимацию полос');
+                this.rocket.removeEventListener('animationend', handleAnimationEnd);
+                this.startSlicesAnimation();
+            };
+            
+            this.rocket.addEventListener('animationend', handleAnimationEnd);
+            
+            // Fallback на случай, если событие animationend не сработает
+            setTimeout(() => {
+                if (this.rocket && this.rocket.classList.contains('takeoff')) {
+                    console.log('🚀 Fallback: запускаем анимацию полос после взлета ракеты');
+                    this.rocket.removeEventListener('animationend', handleAnimationEnd);
+                    this.startSlicesAnimation();
+                }
+            }, 2500); // 2s анимация + 500ms запас
+        } else {
+            // Если ракета не найдена, скрываем прелоадер как обычно
+            console.warn('⚠️ Элемент ракеты не найден, скрываем прелоадер');
             this.hide();
-        }, 1200);
+        }
+    }
+    
+    startSlicesAnimation() {
+        console.log('🎬 Запуск анимации расхождения штор');
+        
+        // Запускаем анимацию расхождения штор (они уже видимы)
+        if (this.slices) {
+            this.slices.classList.add('animate');
+            
+            // Скрываем прелоадер после завершения анимации штор
+            setTimeout(() => {
+                this.hide();
+            }, 800); // Время анимации штор
+        } else {
+            // Если слайсы не найдены, скрываем прелоадер
+            this.hide();
+        }
     }
     
     // Easing функция для плавной анимации
