@@ -1,0 +1,185 @@
+/* Главный CSS файл - импортирует все модули */
+
+/* Базовые стили */
+@import 'base/_variables.css';
+@import 'base/_reset.css';
+@import 'base/_typography.css';
+
+/* Стили для общих компонентов */
+@import 'components/_header.css';
+@import 'components/_footer.css';
+@import 'components/_buttons.css';
+@import 'components/_preloader.css';
+
+/* Стили для конкретных страниц */
+@import 'pages/_home.css';
+
+/* Утилитарные классы */
+
+/* Контейнеры */
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.container-fluid {
+  width: 100%;
+  padding: 0 var(--container-padding);
+}
+
+/* Сетка на CSS Grid */
+.grid {
+  display: grid;
+  gap: var(--spacing-md);
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Адаптивная сетка */
+@media (max-width: 768px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Flexbox утилиты */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-start {
+  align-items: flex-start;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+/* Отступы */
+.m-0 { margin: 0; }
+.m-1 { margin: var(--spacing-xs); }
+.m-2 { margin: var(--spacing-sm); }
+.m-3 { margin: var(--spacing-md); }
+.m-4 { margin: var(--spacing-lg); }
+.m-5 { margin: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+/* Видимость */
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.d-inline-block {
+  display: inline-block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-grid {
+  display: grid;
+}
+
+/* Адаптивная видимость */
+@media (max-width: 768px) {
+  .d-md-none {
+    display: none;
+  }
+  
+  .d-md-block {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .d-sm-none {
+    display: none;
+  }
+  
+  .d-sm-block {
+    display: block;
+  }
+}
+
+/* Базовые секции */
+section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section--large {
+  padding: var(--spacing-xxl) 0;
+}
+
+.section--small {
+  padding: var(--spacing-lg) 0;
+}
