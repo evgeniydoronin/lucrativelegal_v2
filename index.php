@@ -233,7 +233,85 @@ include 'components/home/hero-section.php';
 <!-- case-studies-section end -->
 
 <?php
-// 6. CTA секция
+// 6. Секция "Что мы делаем / Область услуг"
+?>
+<!-- services-section start -->
+<section id="services" class="home-section">
+    <div class="home-section__container">
+        <div class="home-section__header text-center">
+            <h2 class="home-section__title">What We Do / Services Area</h2>
+        </div>
+    </div>
+</section>
+<!-- services-section end -->
+
+<?php
+// 7. Секция "Типы юристов"
+?>
+<!-- lawyer-types-section start -->
+<section id="lawyer-types" class="home-section home-section--gray">
+    <div class="home-section__container">
+        <div class="home-section__header text-center">
+            <h2 class="home-section__title">Types of Lawyers for Land Cases For</h2>
+        </div>
+    </div>
+</section>
+<!-- lawyer-types-section end -->
+
+<?php
+// 8. Галерея "Наши работы"
+?>
+<!-- portfolio-gallery-section start -->
+<section id="portfolio-gallery" class="home-section">
+    <div class="home-section__container">
+        <div class="home-section__header text-center">
+            <h2 class="home-section__title">ALL of the sites we've worked on</h2>
+        </div>
+    </div>
+</section>
+<!-- portfolio-gallery-section end -->
+
+<?php
+// 9. Секция "О нас / Больше информации"
+?>
+<!-- about-more-info-section start -->
+<section id="about-more-info" class="home-section home-section--gray">
+    <div class="home-section__container">
+        <div class="home-section__header text-center">
+            <h2 class="home-section__title">MORE information about what we do, who we are, ROAS, etc.</h2>
+        </div>
+    </div>
+</section>
+<!-- about-more-info-section end -->
+
+<?php
+// 10. Секция блога
+?>
+<!-- blog-section start -->
+<section id="blog" class="home-section">
+    <div class="home-section__container">
+        <div class="home-section__header text-center">
+            <h2 class="home-section__title">Blog Section</h2>
+        </div>
+    </div>
+</section>
+<!-- blog-section end -->
+
+<?php
+// 11. Отзывы клиентов с видео
+?>
+<!-- testimonials-video-section start -->
+<section id="testimonials-video" class="home-section home-section--gray">
+    <div class="home-section__container">
+        <div class="home-section__header text-center">
+            <h2 class="home-section__title">CLIENT TESTIMONIALS and VIDEOS from CLIENTS</h2>
+        </div>
+    </div>
+</section>
+<!-- testimonials-video-section end -->
+
+<?php
+// 12. CTA секция
 ?>
 <!-- cta-section start -->
 <section class="cta-section">

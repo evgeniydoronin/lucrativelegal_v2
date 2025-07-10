@@ -255,3 +255,31 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Стили для секций-заглушек */
+.home-section .text-center {
+  text-align: center;
+}
+
+/* Минимальная высота для секций-заглушек */
+#services,
+#lawyer-types,
+#portfolio-gallery,
+#about-more-info,
+#blog,
+#testimonials-video {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+
+/* Дополнительные отступы для заголовков секций-заглушек */
+#services .home-section__title,
+#lawyer-types .home-section__title,
+#portfolio-gallery .home-section__title,
+#about-more-info .home-section__title,
+#blog .home-section__title,
+#testimonials-video .home-section__title {
+  margin: 0;
+  padding: var(--spacing-lg) 0;
+}
