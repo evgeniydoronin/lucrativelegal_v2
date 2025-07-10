@@ -4,6 +4,7 @@
 @import 'base/_variables.css';
 @import 'base/_reset.css';
 @import 'base/_typography.css';
+@import 'base/_bootstrap-grid.css';
 
 /* Стили для общих компонентов */
 @import 'components/_header.css';
@@ -16,11 +17,9 @@
 
 /* Утилитарные классы */
 
-/* Контейнеры */
-.container {
+/* Контейнеры - переопределяем Bootstrap для совместимости */
+.container:not([class*="container-"]) {
   max-width: var(--container-max-width);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
 }
 
 .container-fluid {
@@ -165,6 +164,15 @@
   .d-sm-block {
     display: block;
   }
+}
+
+/* Основной контент */
+.main-content {
+  position: relative;
+  top: 0;
+  z-index: 1;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 /* Базовые секции */
