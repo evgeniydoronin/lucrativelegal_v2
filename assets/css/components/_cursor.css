@@ -1,0 +1,191 @@
+/* Magic Cursor Styles */
+/* Портировано из layout/assets/css/main.css */
+
+/* Основные стили курсора */
+body.tp-magic-cursor #magic-cursor {
+  display: block;
+}
+
+#magic-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  display: none;
+}
+
+#ball {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  background-color: #000;
+  border: 1px solid #000;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: all 0.3s ease;
+}
+
+/* Цветовые темы курсора */
+.cursor-bg-red #ball {
+  background-color: #FF535B !important;
+}
+
+.cursor-bg-red #ball .ball-view {
+  color: var(--color-white);
+}
+
+.cursor-bg-red-2 #ball {
+  background-color: #FF481F !important;
+}
+
+.cursor-bg-red-2 #ball .ball-view {
+  color: var(--color-white);
+}
+
+.cursor-bg-yellow #ball {
+  background-color: #FFF669 !important;
+}
+
+.cursor-bg-yellow #ball .ball-view {
+  color: var(--color-black);
+}
+
+.cursor-white-bg #ball .ball-view {
+  color: var(--color-black);
+}
+
+/* Ball view - текст внутри курсора */
+#ball .ball-view {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  scale: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ball drag стили */
+#ball .ball-drag {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #fff;
+}
+
+#ball .ball-drag::before,
+#ball .ball-drag::after {
+  position: absolute;
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 900;
+}
+
+#ball .ball-drag::before {
+  content: "\f104"; /* Font Awesome left arrow */
+  left: 2px;
+}
+
+#ball .ball-drag::after {
+  content: "\f105"; /* Font Awesome right arrow */
+  right: 2px;
+}
+
+/* Blur эффект */
+#ball.with-blur {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+/* Ball close стили */
+#ball.ball-close-enabled {
+  opacity: 1 !important;
+  scale: 1 !important;
+}
+
+#ball .ball-close {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 300;
+}
+
+#ball .ball-close::before {
+  content: "×";
+}
+
+/* Магнитные элементы */
+.tp-magnetic-wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.tp-magnetic-item {
+  transition: transform 0.3s ease;
+}
+
+/* Скрытие курсора на мобильных устройствах */
+@media (max-width: 768px) {
+  #magic-cursor {
+    display: none !important;
+  }
+  
+  body.tp-magic-cursor #magic-cursor {
+    display: none !important;
+  }
+}
+
+/* Класс для элементов, которые не должны скрывать курсор */
+.not-hide-cursor {
+  /* Этот класс используется в JavaScript для исключения элементов из скрытия курсора */
+}
+
+/* Дополнительные утилитарные классы */
+.cursor-hide {
+  /* Класс для принудительного скрытия курсора на определенных элементах */
+}
+
+/* Анимации для курсора */
+@keyframes cursor-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cursor-pulse #ball {
+  animation: cursor-pulse 1s infinite;
+}

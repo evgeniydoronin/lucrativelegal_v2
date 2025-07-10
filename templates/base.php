@@ -35,6 +35,13 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/main.css">
+
+    <!-- GSAP Library -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+    <!-- Lenis for Smooth Scrolling -->
+    <script src="https://unpkg.com/lenis@1.1.5/dist/lenis.min.js"></script>
     
     <!-- Дополнительные CSS файлы для конкретных страниц -->
     <?php if (isset($additionalCSS) && is_array($additionalCSS)): ?>
@@ -73,6 +80,11 @@
 </head>
 
 <body data-page="<?php echo isset($bodyDataPage) ? $bodyDataPage : 'default'; ?>" <?php echo isset($bodyClass) ? 'class="' . $bodyClass . '"' : ''; ?>>
+    
+    <!-- Magic Cursor -->
+    <div id="magic-cursor">
+        <div id="ball"></div>
+    </div>
     
     <!-- Прелоадер -->
     <?php include __DIR__ . '/../components/shared/preloader.php'; ?>

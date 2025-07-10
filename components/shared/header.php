@@ -99,7 +99,7 @@
             <div class="col-xl-3 col-lg-6 col-6">
                 <div class="header__actions d-flex align-items-center justify-content-end">
                     <div class="header__btn-box ml-25">
-                        <a href="#" class="btn btn--special btn--red-bg">
+                        <a href="#" class="btn-primary">
                             <span class="btn__filter-blur">
                                 <svg width="0" height="0">
                                     <defs>

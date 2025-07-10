@@ -11,6 +11,9 @@
 @import 'components/_footer.css';
 @import 'components/_buttons.css';
 @import 'components/_preloader.css';
+@import 'components/_cursor.css';
+@import 'components/_services.css';
+@import 'components/_service-modal.css';
 
 /* Стили для конкретных страниц */
 @import 'pages/_home.css';

@@ -49,4 +49,27 @@
   --border-radius-sm: 0.25rem;
   --border-radius-md: 0.5rem;
   --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
+  --border-radius-pill: 50px;
+  
+  /* Дополнительные цвета */
+  --color-red-primary: #ff4757;
+  --color-red-secondary: #ff3742;
+  --color-gray: #666666;
+  
+  /* Кнопки */
+  --btn-primary-bg: linear-gradient(135deg, var(--color-red-primary), var(--color-red-secondary));
+  --btn-primary-color: var(--color-white);
+  --btn-primary-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+  --btn-secondary-bg: var(--color-dark);
+  --btn-secondary-color: var(--color-white);
+  --btn-secondary-shadow: 0 4px 15px rgba(26, 26, 26, 0.3);
+  --btn-secondary-hover-bg: #333333;
+  --btn-padding-sm: 8px 16px;
+  --btn-padding: 12px 24px;
+  --btn-padding-lg: 16px 32px;
+  --btn-border-radius: var(--border-radius-pill);
+  --btn-font-weight: 600;
+  --btn-font-size: 16px;
+  --btn-gap: 8px;
 }

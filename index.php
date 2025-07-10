@@ -234,16 +234,8 @@ include 'components/home/hero-section.php';
 
 <?php
 // 6. Секция "Что мы делаем / Область услуг"
+include 'components/home/services-section.php';
 ?>
-<!-- services-section start -->
-<section id="services" class="home-section">
-    <div class="home-section__container">
-        <div class="home-section__header text-center">
-            <h2 class="home-section__title">What We Do / Services Area</h2>
-        </div>
-    </div>
-</section>
-<!-- services-section end -->
 
 <?php
 // 7. Секция "Типы юристов"
@@ -345,6 +337,7 @@ $pageTitle = "Lucrative Legal Group - Маркетинг для юридичес
 $pageDescription = "Профессиональный маркетинг для юридических фирм. ROI 500-5000%. Rocket Leads технология. Получите больше клиентов уже сегодня.";
 $pageKeywords = "маркетинг для юристов, реклама юридических услуг, Google Ads для адвокатов, SEO для юридических фирм, генерация лидов";
 $bodyDataPage = "home";
+$bodyClass = "tp-magic-cursor";
 
 // Подключаем базовый шаблон
 include 'templates/base.php';

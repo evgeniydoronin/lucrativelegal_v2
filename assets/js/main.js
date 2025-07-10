@@ -6,6 +6,8 @@
 // Импортируем общие компоненты
 import { initHeader } from './components/header.js';
 import Preloader from './components/preloader.js';
+import { initServicesSlider } from './components/services-slider.js';
+import MagicCursor from './components/cursor.js';
 
 // Утилитарные функции, доступные глобально
 window.App = {
@@ -124,6 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => {
         console.error('❌ Ошибка загрузки модуля главной страницы:', error);
       });
+    
+    initServicesSlider();
   }
   
   // Добавляем другие страницы по мере необходимости
