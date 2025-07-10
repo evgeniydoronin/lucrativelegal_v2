@@ -134,3 +134,118 @@
 
 - **Референс:** https://www.hugeinc.com/
 - **Текущая заглушка:** `v2.0/index.php` секция `#services`
+
+---
+
+## 🔍 РЕЗУЛЬТАТЫ ИССЛЕДОВАНИЯ
+
+### 1. Анализ `hugeinc.com`
+- **HTML-структура:** Секция "Work" (`section-our-work`) использует `<ul>` со списком `<li>`, каждый из которых представляет карточку клиента. Используется `position: sticky` и `pin-spacer` для фиксации секции во время скролла.
+- **CSS-стили:** Горизонтальный скролл реализован через `transform: translate()` на JS, а не через нативный CSS скролл. Анимации появления и исчезновения карточек управляются через `opacity` и `transform: scale()`.
+- **JavaScript-логика:** Используется GSAP и Lenis для плавной прокрутки и сложных анимаций. Логика отслеживает позицию скролла и динамически изменяет стили карточек, создавая эффект "липкого" горизонтального скролла.
+
+### 2. Анализ старой реализации (`layout/index.php`)
+- **HTML-структура:** Секция `hugeinc-services-section` уже существует и содержит базовую разметку с `<ul>` и `<li>`.
+- **CSS-стили:** Подключен файл `hugeinc-effect.css`, который содержит стили для горизонтального скролла.
+- **JavaScript-логика:** Подключен `hugeinc-effect.js`, который управляет анимацией.
+
+### 🎯 ВЫВОД ИССЛЕДОВАНИЯ
+У нас есть отличная база для работы! Старая реализация уже содержит основные элементы, которые можно адаптировать и улучшить, используя более продвинутые техники с `hugeinc.com`.
+
+---
+
+## 📋 ДЕТАЛЬНЫЙ ПЛАН РЕАЛИЗАЦИИ "ПОД КЛЮЧ"
+
+### ЭТАП 1: ПОДГОТОВКА КОМПОНЕНТОВ
+- [ ] Создать компонент `v2.0/components/home/services-section.php`
+- [ ] Создать JS-модуль `v2.0/assets/js/components/services-slider.js`
+- [ ] Создать CSS-файл `v2.0/assets/css/components/_services.css`
+
+### ЭТАП 2: СТРУКТУРА ДАННЫХ (в `services-section.php`)
+- [ ] Создать PHP-массив `$services` с 8 услугами:
+  ```php
+  $services = [
+      [
+          'title' => 'Aggressive Case Generation',
+          'subtitle' => 'Google Ads for Attorneys',
+          'image' => 'v2.0/assets/images/services/google-ads.jpg',
+          'video' => 'path/to/video1.mp4'
+      ],
+      // ... и так далее для всех 8 услуг
+  ];
+  ```
+
+### ЭТАП 3: HTML-РАЗМЕТКА (в `services-section.php`)
+- [ ] Создать основную секцию и контейнер:
+  ```html
+  <section id="services" class="services-section">
+      <div class="services-container">
+          <ul class="services-list">
+              <?php foreach ($services as $service): ?>
+                  <li class="service-item">
+                      <div class="service-card">
+                          <img src="<?= $service['image'] ?>" alt="<?= $service['title'] ?>">
+                          <h3><?= $service['title'] ?></h3>
+                          <p><?= $service['subtitle'] ?></p>
+                      </div>
+                  </li>
+              <?php endforeach; ?>
+          </ul>
+      </div>
+  </section>
+  ```
+
+### ЭТАП 4: CSS-СТИЛИ (в `_services.css`)
+- [ ] Реализовать "липкий" контейнер и горизонтальный скролл:
+  ```css
+  .services-section {
+      position: relative;
+      height: 400vh; /* Высота для скролла */
+  }
+  .services-container {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+  }
+  .services-list {
+      display: flex;
+      gap: 20px;
+  }
+  .service-item {
+      flex: 0 0 300px; /* Ширина карточки */
+  }
+  ```
+
+### ЭТАП 5: JAVASCRIPT-ЛОГИКА (в `services-slider.js`)
+- [ ] Использовать GSAP и ScrollTrigger:
+  ```javascript
+  import gsap from 'gsap';
+  import ScrollTrigger from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  export function initServicesSlider() {
+      const servicesList = document.querySelector('.services-list');
+      const servicesItems = document.querySelectorAll('.service-item');
+
+      gsap.to(servicesList, {
+          x: () => -(servicesList.scrollWidth - window.innerWidth),
+          ease: 'none',
+          scrollTrigger: {
+              trigger: '.services-section',
+              pin: true,
+              scrub: 1,
+              end: () => `+=${servicesList.scrollWidth}`,
+          },
+      });
+  }
+  ```
+
+### ЭТАП 6: ИНТЕГРАЦИЯ
+- [ ] В `v2.0/index.php` заменить заглушку на `include 'components/home/services-section.php';`
+- [ ] В `v2.0/assets/css/main.css` добавить `@import 'components/_services.css';`
+- [ ] В `v2.0/assets/js/main.js` импортировать и инициализировать `initServicesSlider()`
+- [ ] Протестировать на разных устройствах и браузерах
