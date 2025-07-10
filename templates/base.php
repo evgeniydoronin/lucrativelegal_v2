@@ -33,6 +33,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <!-- CSS -->
     <link rel="stylesheet" href="/assets/css/main.css">
 
@@ -107,6 +110,9 @@
     
     <!-- JavaScript -->
     <script type="module" src="/assets/js/main.js"></script>
+    
+    <!-- Footer анимации (не ES6 модуль) -->
+    <script src="/assets/js/components/footer.js"></script>
     
     <!-- Дополнительные JavaScript файлы -->
     <?php if (isset($additionalJS) && is_array($additionalJS)): ?>

@@ -8,6 +8,7 @@ import { initHeader } from './components/header.js';
 import Preloader from './components/preloader.js';
 import { initServicesSlider } from './components/services-slider.js';
 import MagicCursor from './components/cursor.js';
+// Footer анимации подключаются через отдельный скрипт в base.php
 
 // Утилитарные функции, доступные глобально
 window.App = {
